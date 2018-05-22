@@ -1,6 +1,6 @@
 # Ko To Bo
 
-People fund contract info
+Shop2Pay Auth., Animated UI, Responsive, Mobile first, etc.,.
 
 # Demo
 
