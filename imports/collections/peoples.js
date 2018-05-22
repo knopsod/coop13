@@ -6,7 +6,8 @@ export const Peoples = new Mongo.Collection('peoples');
 Meteor.methods({
   'peoples.insert': function () {
     return Peoples.insert({
-      fullName: null,
+      no: 0,
+      fullName: '',
       createdAt: moment().valueOf(),
       updatedAt: null,
       hiddenAt: null,
@@ -19,7 +20,7 @@ Meteor.methods({
     return Peoples.remove(people);
   },
   'peoples.update': function (people) {
-    return Peoples.update(team._id,
+    return Peoples.update(people._id,
       {
         ...people,
         updatedAt: moment().valueOf(),

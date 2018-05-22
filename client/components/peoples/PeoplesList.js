@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
+import FlipMove from 'react-flip-move';
 
 import { Peoples } from '../../../imports/collections/peoples';
 
@@ -14,7 +15,7 @@ class PeoplesList extends Component {
   }
 
   handleRemoveClick(people) {
-    Meteor.call('peoples.hide', people);
+    this.props.meteorCall('peoples.hide', people);
   }
 
   renderList() {
@@ -25,7 +26,7 @@ class PeoplesList extends Component {
             <Link className="btn btn-info"
               to={`peoples/${people._id}`}>Edit</Link>
           }
-          {people.createdAt}|{people._id}
+          {` ${people.no}. ${people.fullName}`}
           {this.props.userId &&
             <span className="pull-right">
               <button className="btn btn-danger"
@@ -42,25 +43,26 @@ class PeoplesList extends Component {
   render() {
     return (
       <div>
-        <ul className="list-group">
-          {this.props.userId &&
+        {this.props.userId &&
+          <ul className="list-group">
             <li className="list-group-item">
               <button className="btn btn-primary"
                 onClick={this.handleClick.bind(this)}>
                 Create
               </button>
             </li>
-          }
-          {this.props.userId &&
+
             <li className="list-group-item">
               <div className="input-group">
                 <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
                 <input id="search" ref="search" type="text" className="form-control" name="search" placeholder="Search..."/>
               </div>
             </li>
-          }
-          {this.renderList()}
-        </ul>
+            <FlipMove maintainContainerHeight={true}>
+              {this.renderList()}
+            </FlipMove>
+          </ul>
+        }
 
       </div>
     );
@@ -71,7 +73,8 @@ export default withTracker((props) => {
   Meteor.subscribe('peoples');
 
   return {
-    peoples: Peoples.find({}, {sort: {createdAt: -1}}).fetch(),
-    userId: Meteor.userId()
+    peoples: Peoples.find({}, {sort: {no: 1}}).fetch(),
+    userId: Meteor.userId(),
+    meteorCall: Meteor.call
   };
 })(PeoplesList);
