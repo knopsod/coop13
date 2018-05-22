@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-
+import { withTracker } from 'meteor/react-meteor-data';
 import Header from '../Header';
+
+import { Peoples } from '../../../imports/collections/peoples';
 
 class PeopleEditor extends Component {
   handleSubmit(e) {
@@ -24,4 +26,13 @@ class PeopleEditor extends Component {
   }
 }
 
-export default PeopleEditor;
+export default withTracker((props) => {
+  Meteor.subscribe('peoples');
+
+  const _id = props.match.params._id;
+  const people = Peoples.findOne(_id);
+
+  return {
+    fullName: 'Haha'
+  }
+})(PeopleEditor);
