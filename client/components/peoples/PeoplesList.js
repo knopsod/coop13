@@ -25,7 +25,7 @@ class PeoplesList extends Component {
             <Link className="btn btn-info"
               to={`peoples/${people._id}`}>Edit</Link>
           }
-          {people._id}|{people.createdAt}
+          {people.createdAt}|{people._id}
           {this.props.userId &&
             <span className="pull-right">
               <button className="btn btn-danger"
@@ -71,7 +71,7 @@ export default withTracker((props) => {
   Meteor.subscribe('peoples');
 
   return {
-    peoples: Peoples.find({}).fetch(),
+    peoples: Peoples.find({}, {sort: {createdAt: -1}}).fetch(),
     userId: Meteor.userId()
   };
 })(PeoplesList);
