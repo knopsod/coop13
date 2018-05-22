@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 
-import { Teams } from '../imports/collections/teams';
+import { Peoples } from '../imports/collections/peoples';
 
 Meteor.startup(() => {
-  Meteor.publish('teams', function () {
-    return Teams.find({ creatorId: this.userId, hiddenAt: null });
+  Meteor.publish('peoples', function () {
+    return Peoples.find({ creatorId: this.userId, hiddenAt: null });
   });
 });

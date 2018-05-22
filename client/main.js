@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import App from './components/App';
-import { Teams } from '../imports/collections/teams';
+import PeoplesList from './components/peoples/PeoplesList';
+import PeopleEditor from './components/peoples/PeopleEditor';
+
+import { Peoples } from '../imports/collections/peoples';
 
 const Routes = () => (
   <Router>
-    <Route exact path="/" component={App} />
+    <Switch>
+      <Route exact path="/" component={App} />
+      <Route exact path="/peoples/:_id" component={PeopleEditor} />
+    </Switch>
   </Router>
 );
 

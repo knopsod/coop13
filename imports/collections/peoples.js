@@ -1,12 +1,12 @@
 import { Mongo } from 'meteor/mongo';
 import { moment } from 'meteor/momentjs:moment';
 
-export const Teams = new Mongo.Collection('teams');
+export const Peoples = new Mongo.Collection('peoples');
 
 Meteor.methods({
-  'teams.insert': function () {
-    return Teams.insert({
-      teamName: null,
+  'peoples.insert': function () {
+    return Peoples.insert({
+      fullName: null,
       createdAt: moment().valueOf(),
       updatedAt: null,
       hiddenAt: null,
@@ -15,22 +15,22 @@ Meteor.methods({
       hiddenId: null
     });
   },
-  'teams.remove': function (team) {
-    return Teams.remove(team);
+  'peoples.remove': function (people) {
+    return Peoples.remove(people);
   },
-  'teams.update': function (team) {
-    return Teams.update(team._id,
+  'peoples.update': function (people) {
+    return Peoples.update(team._id,
       {
-        ...team,
+        ...people,
         updatedAt: moment().valueOf(),
         updaterId: this.userId
       }
     );
   },
-  'teams.hide': function (team) {
-    return Teams.update(team._id,
+  'peoples.hide': function (people) {
+    return Peoples.update(people._id,
       {
-        ...team,
+        ...people,
         hiddenAt: moment().valueOf(),
         hiddenId: this.userId
       }
