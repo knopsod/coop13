@@ -1,7 +1,7 @@
-# Auth-Twbs
+# Ko To Bo
 
-Meteor, React, Authentication, Bootstrap and Router boilerplate.
+People fund contract info
 
 # Demo
 
-[http://authen-twbs.herokuapp.com/](http://authen-twbs.herokuapp.com/)
+[http://kotobo.herokuapp.com/](http://kotobo.herokuapp.com/)

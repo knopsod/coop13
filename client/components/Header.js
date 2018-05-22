@@ -8,7 +8,7 @@ class Header extends Component {
     return (
       <nav className="nav navbar-default">
         <div className="navbar-header">
-          <a className="navbar-brand">Authen-Twbs</a>
+          <a className="navbar-brand">กทบ.</a>
         </div>
         <ul className="nav navbar-nav">
           <li>
