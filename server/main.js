@@ -4,6 +4,11 @@ import { Peoples } from '../imports/collections/peoples';
 
 Meteor.startup(() => {
   Meteor.publish('peoples', function () {
-    return Peoples.find({ sharedWith: [this.userId] });
+    return Peoples.find({
+      $or: [
+        { createdId: this.userId },
+        { sharedWith: this.userId }
+      ]
+    });
   });
 });
