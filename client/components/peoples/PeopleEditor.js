@@ -44,7 +44,7 @@ class PeopleEditor extends Component {
       <div>
         <Header />
         <div className="container">
-          <h2>People info.</h2>
+          <h2>Edit people</h2>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
               <label>No. :</label>
@@ -59,7 +59,7 @@ class PeopleEditor extends Component {
                 onChange={this.handleFullNameChange.bind(this)} />
             </div>
             <div className="form-group">
-              <button type="button" className="btn btn-default"
+              <button type="button" className="btn"
                 onClick={this.handleCancel.bind(this)}>Cancel</button>
               <span className="pull-right">
                 <button type="submit" className="btn btn-primary">Submit</button>

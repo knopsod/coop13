@@ -4,6 +4,6 @@ import { Peoples } from '../imports/collections/peoples';
 
 Meteor.startup(() => {
   Meteor.publish('peoples', function () {
-    return Peoples.find({ creatorId: this.userId, hiddenAt: null });
+    return Peoples.find({ sharedWith: [this.userId] });
   });
 });

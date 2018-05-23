@@ -8,33 +8,50 @@ import { Peoples } from '../../../imports/collections/peoples';
 import Header from '../Header';
 
 class PeoplesList extends Component {
-  handleClick(e) {
+  handleCreateClick(e) {
     e.preventDefault();
 
     Meteor.call('peoples.insert');
   }
 
-  handleRemoveClick(people) {
+  handleHideClick(people) {
     this.props.meteorCall('peoples.hide', people);
+  }
+
+  handleShowClick(people) {
+    this.props.meteorCall('peoples.show', people);
   }
 
   renderList() {
     return this.props.peoples.map((people) => {
       return (
         <li className="list-group-item" key={people._id}>
-          {this.props.userId &&
+          { people.visibled ?
             <Link className="btn btn-info"
               to={`peoples/${people._id}`}>Edit</Link>
+              :
+            <button className="btn">Info</button>
           }
+
           {` ${people.no}. ${people.fullName}`}
-          {this.props.userId &&
+
+          { people.visibled ?
             <span className="pull-right">
               <button className="btn btn-danger"
-                onClick={() => {this.handleRemoveClick(people)}}>
+                onClick={() => {this.handleHideClick(people)}}>
                 X
               </button>
             </span>
+            :
+            <span className="pull-right">
+              <button className="btn btn-success"
+                onClick={() => {this.handleShowClick(people)}}>
+                +
+              </button>
+            </span>
+
           }
+
         </li>
       );
     });
@@ -47,7 +64,7 @@ class PeoplesList extends Component {
           <ul className="list-group">
             <li className="list-group-item">
               <button className="btn btn-primary"
-                onClick={this.handleClick.bind(this)}>
+                onClick={this.handleCreateClick.bind(this)}>
                 Create
               </button>
             </li>
@@ -73,7 +90,7 @@ export default withTracker((props) => {
   Meteor.subscribe('peoples');
 
   return {
-    peoples: Peoples.find({}, {sort: {no: 1}}).fetch(),
+    peoples: Peoples.find({}, {sort: {visibled: -1, no: 1}}).fetch(),
     userId: Meteor.userId(),
     meteorCall: Meteor.call
   };
