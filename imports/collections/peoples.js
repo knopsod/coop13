@@ -8,6 +8,7 @@ Meteor.methods({
     return Peoples.insert({
       no: 0,
       fullName: '',
+      amount: 0,
       createdAt: moment().valueOf(),
       updatedAt: 0,
       hiddenAt: 0,
@@ -16,7 +17,7 @@ Meteor.methods({
       updatedId: '',
       hiddenId: '',
       shownId: '',
-      visibled: 1,
+      visibled: true,
       sharedWith: [this.userId]
     });
   },
@@ -42,7 +43,7 @@ Meteor.methods({
           ...people,
           hiddenAt: moment().valueOf(),
           hiddenId: this.userId,
-          visibled: 0
+          visibled: false
         }
       }
     );
@@ -54,9 +55,28 @@ Meteor.methods({
           ...people,
           shownAt: moment().valueOf(),
           shownId: this.userId,
-          visibled: 1
+          visibled: true
         }
       }
     );
+  },
+  'peoples.duplicate': function (people) {
+    const {no, fullName, amount} = people;
+
+    return Peoples.insert({
+      no,
+      fullName,
+      amount,
+      createdAt: moment().valueOf(),
+      updatedAt: 0,
+      hiddenAt: 0,
+      shownAt: 0,
+      createdId: this.userId,
+      updatedId: '',
+      hiddenId: '',
+      shownId: '',
+      visibled: 1,
+      sharedWith: [this.userId]
+    });
   }
 });

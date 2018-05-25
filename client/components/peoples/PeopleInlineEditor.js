@@ -13,9 +13,9 @@ class PeopleInlineEditor extends Component {
     }
   }
   handleChange(e) {
-    const fullName = e.target.value;
+    const amount = e.target.value;
     this.setState({
-      people: { ...this.state.people, fullName }
+      people: { ...this.state.people, amount }
     });
   }
   handleBlur(e) {
@@ -28,7 +28,8 @@ class PeopleInlineEditor extends Component {
   }
   render() {
     return (
-      <input value={this.state.people.fullName}
+      <input type="number" style={{textAlign: 'right'}}
+        value={this.state.people.amount}
         onChange={this.handleChange.bind(this)}
         onBlur={this.handleBlur.bind(this)}/>
     );

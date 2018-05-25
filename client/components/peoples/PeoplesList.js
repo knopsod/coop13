@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import FlipMove from 'react-flip-move';
+import PropTypes from 'prop-types';
 
 import { Peoples } from '../../../imports/collections/peoples';
 
@@ -9,18 +10,34 @@ import Header from '../Header';
 import PeopleInlineEditor from './PeopleInlineEditor';
 
 class PeoplesList extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   handleCreateClick(e) {
     e.preventDefault();
 
-    Meteor.call('peoples.insert');
+    this.props.meteorCall('peoples.insert');
   }
 
   handleHideClick(people) {
-    this.props.meteorCall('peoples.hide', people);
+    if (people.no === 0) {
+      this.props.meteorCall('peoples.remove', people);
+    } else {
+      this.props.meteorCall('peoples.hide', people);
+    }
   }
 
   handleShowClick(people) {
-    this.props.meteorCall('peoples.show', people);
+    if (people.no === 0) {
+      this.props.meteorCall('peoples.remove', people);
+    } else {
+      this.props.meteorCall('peoples.show', people);
+    }
+  }
+
+  handleCopyClick(people) {
+    this.props.meteorCall('peoples.duplicate', people);
   }
 
   renderList() {
@@ -28,31 +45,43 @@ class PeoplesList extends Component {
       return (
         <li className="list-group-item d-flex justify-content-between"
           key={people._id}>
-          { people.visibled ?
-            <Link className="btn btn-info"
-              to={`peoples/${people._id}`}>Edit</Link>
-              :
-            <button className="btn btn-default">Info</button>
-          }
+          <Link className="btn btn-info"
+            to={`peoples/${people._id}`}>Edit</Link>
 
-          <PeopleInlineEditor key={people._id} people={people} />
+          {` ${people.no}. ${people.fullName}`}
 
-          { people.visibled ?
-            <span className="pull-right">
-              <button className="btn btn-danger"
-                onClick={() => {this.handleHideClick(people)}}>
-                X
-              </button>
-            </span>
-            :
-            <span className="pull-right">
-              <button className="btn btn-success"
-                onClick={() => {this.handleShowClick(people)}}>
-                U
-              </button>
-            </span>
+          <span className="pull-right">
+            <PeopleInlineEditor key={people._id} people={people} />
+            {` `}
+            <button className="btn btn-danger"
+              onClick={() => {this.handleHideClick(people)}}>
+              X
+            </button>
+          </span>
 
-          }
+        </li>
+      );
+    });
+  }
+
+  renderHiddenList() {
+    return this.props.hiddenPeoples.map((people) => {
+      return (
+        <li className="list-group-item d-flex justify-content-between"
+          key={people._id}>
+
+          <button className="btn btn-default"
+            onClick={() => this.handleCopyClick(people)}>Copy</button>
+
+          {` ${people.no}. ${people.fullName}`}
+
+          <span className="pull-right">
+            {`${people.amount} `}
+            <button className="btn btn-success"
+              onClick={() => {this.handleShowClick(people)}}>
+              U
+            </button>
+          </span>
 
         </li>
       );
@@ -77,8 +106,32 @@ class PeoplesList extends Component {
                 <input id="search" ref="search" type="text" className="form-control" name="search" placeholder="Search..."/>
               </div>
             </li>
+
             <FlipMove maintainContainerHeight={true}>
               {this.renderList()}
+
+              <li className="list-group-item d-flex justify-content-between">
+                <button className="btn btn-primary" style={{marginRight: 2}}>
+                  พิมพ์ใบสมัคร
+                </button>
+                <button className="btn btn-primary" style={{marginRight: 2}}>
+                  พิมพ์ใบสัญญาเงินกู้
+                </button>
+                { parseInt(this.props.peoples.length) < 11 ?
+                  <button className="btn btn-primary" style={{marginRight: 2}}>
+                    พิมพ์ใบปะหน้า 10 รายการ
+                  </button>
+                  : undefined
+                }
+                <span className="pull-right">
+                  <h4 style={{marginRight: 40}}>
+                    {`${this.props.sum}`}
+                  </h4>
+                  {/* <input style={{marginRight: 40}} value={this.state.sum}/> */}
+                </span>
+              </li>
+
+              {this.renderHiddenList()}
             </FlipMove>
           </ul>
         }
@@ -88,11 +141,31 @@ class PeoplesList extends Component {
   }
 }
 
+PeoplesList.propTypes = {
+  peoples: PropTypes.array,
+  sum: PropTypes.string,
+  hiddenPeoples: PropTypes.array,
+  userId: PropTypes.string,
+  meteorCall: PropTypes.func
+}
+
 export default withTracker((props) => {
   Meteor.subscribe('peoples');
 
+  const peoples = Peoples.find({visibled: true}, {sort: {no: 1}}).fetch();
+  const hiddenPeoples = Peoples.find({visibled: false}, {sort: {no: 1}}).fetch();
+  let sum = 0;
+
+  peoples.forEach((people) => {
+    sum = sum + parseInt(people.amount);
+  });
+
+  sum = '' + sum;
+
   return {
-    peoples: Peoples.find({}, {sort: {visibled: -1, no: 1}}).fetch(),
+    peoples,
+    sum,
+    hiddenPeoples,
     userId: Meteor.userId(),
     meteorCall: Meteor.call
   };
