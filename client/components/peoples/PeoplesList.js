@@ -37,7 +37,7 @@ class PeoplesList extends Component {
   }
 
   handleCopyClick(people) {
-    this.props.meteorCall('peoples.duplicate', people);
+    // this.props.meteorCall('peoples.duplicate', people);
   }
 
   renderList() {
@@ -51,9 +51,10 @@ class PeoplesList extends Component {
           {` ${people.no}. ${people.fullName}`}
 
           <span className="pull-right">
+
             <PeopleInlineEditor key={people._id} people={people} />
-            {` `}
-            <button className="btn btn-danger"
+
+            <button className="btn btn-danger" style={{marginLeft: 2}}
               onClick={() => {this.handleHideClick(people)}}>
               X
             </button>
@@ -71,13 +72,13 @@ class PeoplesList extends Component {
           key={people._id}>
 
           <button className="btn btn-default"
-            onClick={() => this.handleCopyClick(people)}>Copy</button>
+            onClick={() => this.handleCopyClick(people)}>Info</button>
 
           {` ${people.no}. ${people.fullName}`}
 
           <span className="pull-right">
-            {`${people.amount} `}
-            <button className="btn btn-success"
+            {`${people.amount}`}
+            <button className="btn btn-success" style={{marginLeft: 2}}
               onClick={() => {this.handleShowClick(people)}}>
               U
             </button>
@@ -93,6 +94,21 @@ class PeoplesList extends Component {
       <div>
         {this.props.userId &&
           <ul className="list-group">
+            <li className="list-group-item d-flex justify-content-between">
+              <button className="btn btn-primary" style={{marginRight: 2}}>
+                พิมพ์ใบสมัคร
+              </button>
+              <button className="btn btn-primary" style={{marginRight: 2}}>
+                พิมพ์ใบสัญญาเงินกู้
+              </button>
+              { parseInt(this.props.peoples.length) < 11 ?
+                <button className="btn btn-primary" style={{marginRight: 2}}>
+                  พิมพ์ใบปะหน้า 10 รายการ
+                </button>
+                : undefined
+              }
+            </li>
+
             <li className="list-group-item">
               <button className="btn btn-primary"
                 onClick={this.handleCreateClick.bind(this)}>
@@ -100,29 +116,17 @@ class PeoplesList extends Component {
               </button>
             </li>
 
-            <li className="list-group-item">
+            {/* <li className="list-group-item">
               <div className="input-group">
                 <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
                 <input id="search" ref="search" type="text" className="form-control" name="search" placeholder="Search..."/>
               </div>
-            </li>
+            </li> */}
 
             <FlipMove maintainContainerHeight={true}>
               {this.renderList()}
 
               <li className="list-group-item d-flex justify-content-between">
-                <button className="btn btn-primary" style={{marginRight: 2}}>
-                  พิมพ์ใบสมัคร
-                </button>
-                <button className="btn btn-primary" style={{marginRight: 2}}>
-                  พิมพ์ใบสัญญาเงินกู้
-                </button>
-                { parseInt(this.props.peoples.length) < 11 ?
-                  <button className="btn btn-primary" style={{marginRight: 2}}>
-                    พิมพ์ใบปะหน้า 10 รายการ
-                  </button>
-                  : undefined
-                }
                 <span className="pull-right">
                   <h4 style={{marginRight: 40}}>
                     {`${this.props.sum}`}

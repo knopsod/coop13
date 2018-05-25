@@ -75,7 +75,7 @@ Meteor.methods({
       updatedId: '',
       hiddenId: '',
       shownId: '',
-      visibled: 1,
+      visibled: true,
       sharedWith: [this.userId]
     });
   }
