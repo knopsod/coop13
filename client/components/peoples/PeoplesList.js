@@ -6,6 +6,7 @@ import FlipMove from 'react-flip-move';
 import { Peoples } from '../../../imports/collections/peoples';
 
 import Header from '../Header';
+import PeopleInlineEditor from './PeopleInlineEditor';
 
 class PeoplesList extends Component {
   handleCreateClick(e) {
@@ -25,15 +26,16 @@ class PeoplesList extends Component {
   renderList() {
     return this.props.peoples.map((people) => {
       return (
-        <li className="list-group-item" key={people._id}>
+        <li className="list-group-item d-flex justify-content-between"
+          key={people._id}>
           { people.visibled ?
             <Link className="btn btn-info"
               to={`peoples/${people._id}`}>Edit</Link>
               :
-            <button className="btn">Info</button>
+            <button className="btn btn-default">Info</button>
           }
 
-          {` ${people.no}. ${people.fullName}`}
+          <PeopleInlineEditor key={people._id} people={people} />
 
           { people.visibled ?
             <span className="pull-right">
@@ -46,7 +48,7 @@ class PeoplesList extends Component {
             <span className="pull-right">
               <button className="btn btn-success"
                 onClick={() => {this.handleShowClick(people)}}>
-                +
+                U
               </button>
             </span>
 

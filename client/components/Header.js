@@ -16,7 +16,7 @@ class Header extends Component {
             <li>
               <Accounts />
             </li>
-
+            
           </ul>
         </div>
       </nav>

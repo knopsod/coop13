@@ -29,6 +29,7 @@ class PeopleEditor extends Component {
   }
   handleFullNameChange(e) {
     const fullName = e.target.value;
+
     this.setState({
       people: { ...this.state.people, fullName }
     });
