@@ -96,11 +96,14 @@ class PeoplesList extends Component {
           <ul className="list-group">
             <li className="list-group-item d-flex justify-content-between">
               <button className="btn btn-primary" style={{marginRight: 2}}>
-                พิมพ์ใบสมัคร
+                Excel
               </button>
-              <button className="btn btn-primary" style={{marginRight: 2}}>
-                พิมพ์ใบสัญญาเงินกู้
-              </button>
+              { parseInt(this.props.peoples.length) < 34 ?
+                <button className="btn btn-primary" style={{marginRight: 2}}>
+                  พิมพ์ใบรายชื่อ 33 รายการ
+                </button>
+                : undefined
+              }
               { parseInt(this.props.peoples.length) < 11 ?
                 <button className="btn btn-primary" style={{marginRight: 2}}>
                   พิมพ์ใบปะหน้า 10 รายการ

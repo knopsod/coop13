@@ -48,6 +48,14 @@ class PeopleEditor extends Component {
           <h2>Edit people</h2>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
+              <button type="button" className="btn btn-primary" style={{marginRight: 2}}>
+                พิมพ์ใบสมัคร
+              </button>
+              <button type="button" className="btn btn-primary" style={{marginRight: 2}}>
+                พิมพ์ใบสัญญา
+              </button>
+            </div>
+            <div className="form-group">
               <label>No. :</label>
               <input type="text" className="form-control" ref="no"
                 value={this.state.people.no}
