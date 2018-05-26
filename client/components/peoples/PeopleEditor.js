@@ -49,10 +49,10 @@ class PeopleEditor extends Component {
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
               <button type="button" className="btn btn-primary" style={{marginRight: 2}}>
-                พิมพ์ใบสมัคร
+                พิมพ์ใบสมัคร(กำลังทำ...)
               </button>
               <button type="button" className="btn btn-primary" style={{marginRight: 2}}>
-                พิมพ์ใบสัญญา
+                พิมพ์ใบสัญญา(กำลังทำ...)
               </button>
             </div>
             <div className="form-group">

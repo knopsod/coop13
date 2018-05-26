@@ -21,23 +21,15 @@ class PeoplesList extends Component {
   }
 
   handleHideClick(people) {
-    if (people.no === 0) {
-      this.props.meteorCall('peoples.remove', people);
-    } else {
-      this.props.meteorCall('peoples.hide', people);
-    }
+    this.props.meteorCall('peoples.hide', people);
   }
 
-  handleShowClick(people) {
-    if (people.no === 0) {
-      this.props.meteorCall('peoples.remove', people);
-    } else {
-      this.props.meteorCall('peoples.show', people);
-    }
+  handleRemoveClick(people) {
+    this.props.meteorCall('peoples.remove', people);
   }
 
   handleCopyClick(people) {
-    // this.props.meteorCall('peoples.duplicate', people);
+    this.props.meteorCall('peoples.duplicate', people);
   }
 
   renderList() {
@@ -54,7 +46,7 @@ class PeoplesList extends Component {
 
             <PeopleInlineEditor key={people._id} people={people} />
 
-            <button className="btn btn-danger" style={{marginLeft: 2}}
+            <button className="btn btn-warning" style={{marginLeft: 2}}
               onClick={() => {this.handleHideClick(people)}}>
               X
             </button>
@@ -72,15 +64,15 @@ class PeoplesList extends Component {
           key={people._id}>
 
           <button className="btn btn-default"
-            onClick={() => this.handleCopyClick(people)}>Info</button>
+            onClick={() => this.handleCopyClick(people)}>Copy</button>
 
           {` ${people.no}. ${people.fullName}`}
 
           <span className="pull-right">
             {`${people.amount}`}
-            <button className="btn btn-success" style={{marginLeft: 2}}
-              onClick={() => {this.handleShowClick(people)}}>
-              U
+            <button className="btn btn-danger" style={{marginLeft: 2}}
+              onClick={() => {this.handleRemoveClick(people)}}>
+              X
             </button>
           </span>
 
@@ -96,17 +88,17 @@ class PeoplesList extends Component {
           <ul className="list-group">
             <li className="list-group-item d-flex justify-content-between">
               <button className="btn btn-primary" style={{marginRight: 2}}>
-                Excel
+                Excel(กำลังทำ...)
               </button>
               { parseInt(this.props.peoples.length) < 34 ?
                 <button className="btn btn-primary" style={{marginRight: 2}}>
-                  พิมพ์ใบรายชื่อ 33 รายการ
+                  พิมพ์ใบรายชื่อ(33)(กำลังทำ...)
                 </button>
                 : undefined
               }
               { parseInt(this.props.peoples.length) < 11 ?
                 <button className="btn btn-primary" style={{marginRight: 2}}>
-                  พิมพ์ใบปะหน้า 10 รายการ
+                  พิมพ์ใบปะหน้า(10)(กำลังทำ...)
                 </button>
                 : undefined
               }
