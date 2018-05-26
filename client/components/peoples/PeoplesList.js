@@ -132,7 +132,7 @@ class PeoplesList extends Component {
               <li className="list-group-item d-flex justify-content-between">
                 <span className="pull-right">
                   <h4 style={{marginRight: 40}}>
-                    {`${this.props.sum}`}
+                    {`รวม ${this.props.sum}`}
                   </h4>
                   {/* <input style={{marginRight: 40}} value={this.state.sum}/> */}
                 </span>
