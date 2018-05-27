@@ -45,33 +45,33 @@ class PeopleEditor extends Component {
       <div>
         <Header />
         <div className="container">
-          <h2>Edit people</h2>
+          <h2>แก้ไขข้อมูล</h2>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
-              <button type="button" className="btn btn-primary" style={{marginRight: 2}}>
+              {/* <button type="button" className="btn btn-primary" style={{marginRight: 2}}>
                 พิมพ์ใบสมัคร(กำลังทำ...)
-              </button>
+              </button> */}
               <button type="button" className="btn btn-primary" style={{marginRight: 2}}>
-                พิมพ์ใบสัญญา(กำลังทำ...)
+                พิมพ์ใบสัญญากู้(กำลังทำ...)
               </button>
             </div>
             <div className="form-group">
-              <label>No. :</label>
+              <label>ลำดับที่ :</label>
               <input type="text" className="form-control" ref="no"
                 value={this.state.people.no}
                 onChange={this.handleNoChange.bind(this)}/>
             </div>
             <div className="form-group">
-              <label>Full name :</label>
+              <label>ชื่อ - นามสกุล :</label>
               <input type="text" className="form-control" ref="fullName"
                 value={this.state.people.fullName}
                 onChange={this.handleFullNameChange.bind(this)} />
             </div>
             <div className="form-group">
               <button type="button" className="btn"
-                onClick={this.handleCancel.bind(this)}>Cancel</button>
+                onClick={this.handleCancel.bind(this)}>ย้อนกลับ</button>
               <span className="pull-right">
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">บันทึก</button>
               </span>
             </div>
           </form>

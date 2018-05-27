@@ -38,7 +38,7 @@ class PeoplesList extends Component {
         <li className="list-group-item d-flex justify-content-between"
           key={people._id}>
           <Link className="btn btn-info"
-            to={`peoples/${people._id}`}>Edit</Link>
+            to={`peoples/${people._id}`}>แก้ไข</Link>
 
           {` ${people.no}. ${people.fullName}`}
 
@@ -48,7 +48,7 @@ class PeoplesList extends Component {
 
             <button className="btn btn-warning" style={{marginLeft: 2}}
               onClick={() => {this.handleHideClick(people)}}>
-              X
+              ยกเลิก
             </button>
           </span>
 
@@ -64,7 +64,7 @@ class PeoplesList extends Component {
           key={people._id}>
 
           <button className="btn btn-default"
-            onClick={() => this.handleCopyClick(people)}>Copy</button>
+            onClick={() => this.handleCopyClick(people)}>คัดลอก</button>
 
           {` ${people.no}. ${people.fullName}`}
 
@@ -72,7 +72,7 @@ class PeoplesList extends Component {
             {`${people.amount}`}
             <button className="btn btn-danger" style={{marginLeft: 2}}
               onClick={() => {this.handleRemoveClick(people)}}>
-              X
+              ลบทิ้ง
             </button>
           </span>
 
@@ -90,7 +90,7 @@ class PeoplesList extends Component {
               <button className="btn btn-primary" style={{marginRight: 2}}>
                 Excel(กำลังทำ...)
               </button>
-              { parseInt(this.props.peoples.length) < 34 ?
+              {/* { parseInt(this.props.peoples.length) < 34 ?
                 <button className="btn btn-primary" style={{marginRight: 2}}>
                   พิมพ์ใบรายชื่อ(33)(กำลังทำ...)
                 </button>
@@ -101,13 +101,13 @@ class PeoplesList extends Component {
                   พิมพ์ใบปะหน้า(10)(กำลังทำ...)
                 </button>
                 : undefined
-              }
+              } */}
             </li>
 
             <li className="list-group-item">
               <button className="btn btn-primary"
                 onClick={this.handleCreateClick.bind(this)}>
-                Create
+                สร้างใหม่
               </button>
             </li>
 
