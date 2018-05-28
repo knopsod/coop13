@@ -7,8 +7,45 @@ Meteor.methods({
   'peoples.insert': function () {
     return Peoples.insert({
       no: 0,
+
+      day: '',
+      month: '',
+      year: '',
+
       fullName: '',
+      prefixName: '',
+      firstName: '',
+      lastName: '',
+      
+      addressNo: '',
+      addressBan: '',
+      addressMoo: '',
+      addressTambon: '',
+      addressAmphoe: '',
+      addressProvince: '',
+      zipcode: '',
+      phoneNumber: '',
+
       amount: 0,
+
+      committeeName: '',
+      committeeName2: '',
+
+      copiedDocsCount: 0,
+
+      funeralName: '',
+      funeralTambon: '',
+      funeralAmphoe: '',
+      funeralProvince: '',
+
+      spouseName: '',
+
+      guarantorFullName: '',
+      guarantorFullName2: '',
+
+      witnessFullName: '',
+      witnessFullName2: '',
+
       createdAt: moment().valueOf(),
       updatedAt: 0,
       hiddenAt: 0,

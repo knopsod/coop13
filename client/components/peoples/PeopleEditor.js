@@ -45,15 +45,19 @@ class PeopleEditor extends Component {
       <div>
         <Header />
         <div className="container">
-          <h2>แก้ไขข้อมูล</h2>
+          <h2>ข้อมูลสมาชิก</h2>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
+              <div className="form-group">
+                <button type="button" className="btn"
+                  onClick={this.handleCancel.bind(this)}>ย้อนกลับ</button>
+              </div>
               {/* <button type="button" className="btn btn-primary" style={{marginRight: 2}}>
                 พิมพ์ใบสมัคร(กำลังทำ...)
               </button> */}
-              <button type="button" className="btn btn-primary" style={{marginRight: 2}}>
+              {/* <button type="button" className="btn btn-primary" style={{marginRight: 2}}>
                 พิมพ์ใบสัญญากู้(กำลังทำ...)
-              </button>
+              </button> */}
             </div>
             <div className="form-group">
               <label>ลำดับที่ :</label>
@@ -68,11 +72,114 @@ class PeopleEditor extends Component {
                 onChange={this.handleFullNameChange.bind(this)} />
             </div>
             <div className="form-group">
-              <button type="button" className="btn"
-                onClick={this.handleCancel.bind(this)}>ย้อนกลับ</button>
-              <span className="pull-right">
-                <button type="submit" className="btn btn-primary">บันทึก</button>
-              </span>
+              <label>คู่สมรส :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+
+            <div className="form-group">
+              <label>บ้านเลขที่ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>บ้าน :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>หมู่ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>ตำบล :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>อำเภอ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>จังหวัด :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>รหัสไปรษณีย์ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>หมายเลขโทรศัพท์ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>วงเงินกู้ :</label>
+              <input type="number" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>สำเนาเพื่อมอบให้ผู้กู้ ผู้ค้ำ ธนาคาร จำนวน(ฉบับ):</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>ฌาปณกิจสงเคราะห์ของผู้กู้ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>ตำบล :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>อำเภอ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>จังหวัด :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>ผู้แทนกองทุนฯ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>ผู้แทนกองทุนฯ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>ผู้ค้ำ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>ผู้ค้ำ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>พยาน :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>พยาน :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+
+            <div className="form-group">
+              <button type="submit" className="btn btn-primary">บันทึก</button>
             </div>
           </form>
         </div>

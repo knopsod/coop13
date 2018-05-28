@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import FlipMove from 'react-flip-move';
 import PropTypes from 'prop-types';
+import numeral from 'numeral';
 
 import { Peoples } from '../../../imports/collections/peoples';
 
@@ -86,11 +87,11 @@ class PeoplesList extends Component {
       <div>
         {this.props.userId &&
           <ul className="list-group">
-            <li className="list-group-item d-flex justify-content-between">
+            {/* <li className="list-group-item d-flex justify-content-between">
               <button className="btn btn-primary" style={{marginRight: 2}}>
                 Excel(กำลังทำ...)
               </button>
-              {/* { parseInt(this.props.peoples.length) < 34 ?
+              { parseInt(this.props.peoples.length) < 34 ?
                 <button className="btn btn-primary" style={{marginRight: 2}}>
                   พิมพ์ใบรายชื่อ(33)(กำลังทำ...)
                 </button>
@@ -101,8 +102,8 @@ class PeoplesList extends Component {
                   พิมพ์ใบปะหน้า(10)(กำลังทำ...)
                 </button>
                 : undefined
-              } */}
-            </li>
+              }
+            </li> */}
 
             <li className="list-group-item">
               <button className="btn btn-primary"
@@ -123,8 +124,8 @@ class PeoplesList extends Component {
 
               <li className="list-group-item d-flex justify-content-between">
                 <span className="pull-right">
-                  <h4 style={{marginRight: 40}}>
-                    {`รวม ${this.props.sum}`}
+                  <h4 style={{marginRight: 32}}>
+                    {`รวม ${numeral(parseInt(this.props.sum)).format('0,0')} บาท`}
                   </h4>
                   {/* <input style={{marginRight: 40}} value={this.state.sum}/> */}
                 </span>
