@@ -10,13 +10,13 @@ class Header extends Component {
       <nav className="navbar navbar-default">
         <div className="container-fluid">
           <div className="navbar-header">
-            <Link className="navbar-brand" to="/">Shop2Pay Auth., Animated UI</Link>
+            <Link className="navbar-brand" to="/">หน้าแรก</Link>
           </div>
           <ul className="nav navbar-nav">
             <li>
               <Accounts />
             </li>
-            
+
           </ul>
         </div>
       </nav>
