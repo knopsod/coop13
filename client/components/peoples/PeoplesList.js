@@ -64,7 +64,7 @@ class PeoplesList extends Component {
         <li className="list-group-item d-flex justify-content-between"
           key={people._id}>
 
-          <button className="btn btn-primary"
+          <button className="btn btn-info"
             onClick={() => this.handleCopyClick(people)}>คัดลอก</button>
 
           {` ${people.no}. ${people.fullName}`}
