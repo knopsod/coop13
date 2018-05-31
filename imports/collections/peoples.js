@@ -16,7 +16,7 @@ Meteor.methods({
       prefixName: '',
       firstName: '',
       lastName: '',
-      
+
       addressNo: '',
       addressBan: '',
       addressMoo: '',
@@ -38,7 +38,7 @@ Meteor.methods({
       funeralAmphoe: '',
       funeralProvince: '',
 
-      spouseName: '',
+      spouseFullName: '',
 
       guarantorFullName: '',
       guarantorFullName2: '',

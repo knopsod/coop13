@@ -29,7 +29,6 @@ class PeopleEditor extends Component {
   }
   handleFullNameChange(e) {
     const fullName = e.target.value;
-
     this.setState({
       people: { ...this.state.people, fullName }
     });
@@ -38,6 +37,60 @@ class PeopleEditor extends Component {
     const no = e.target.value;
     this.setState({
       people: { ...this.state.people, no }
+    });
+  }
+  handleAddressNoChange(e) {
+    const addressNo = e.target.value;
+    this.setState({
+      people: { ...this.state.people, addressNo }
+    });
+  }
+  handleAddressBanChange(e) {
+    const addressBan = e.target.value;
+    this.setState({
+      people: { ...this.state.people, addressBan }
+    });
+  }
+  handleAddressMooChange(e) {
+    const addressMoo = e.target.value;
+    this.setState({
+      people: { ...this.state.people, addressMoo }
+    });
+  }
+  handleAddressTambonChange(e) {
+    const addressTambon = e.target.value;
+    this.setState({
+      people: { ...this.state.people, addressTambon }
+    });
+  }
+  handleAddressAmphoeChange(e) {
+    const addressAmphoe = e.target.value;
+    this.setState({
+      people: { ...this.state.people, addressAmphoe }
+    });
+  }
+  handleAddressProvince(e) {
+    const addressProvince = e.target.value;
+    this.setState({
+      people: { ...this.state.people, addressProvince }
+    });
+  }
+  handleZipcodeChange(e) {
+    const zipcode = e.target.value;
+    this.setState({
+      people: { ...this.state.people, zipcode }
+    });
+  }
+  handlePhoneNumberChange(e) {
+    const phoneNumber = e.target.value;
+    this.setState({
+      people: { ...this.state.people, phoneNumber }
+    });
+  }
+  handleAmountChange(e) {
+    const amount = e.target.value;
+    this.setState({
+      people: { ...this.state.people, amount }
     });
   }
   render() {
@@ -71,56 +124,60 @@ class PeopleEditor extends Component {
                 value={this.state.people.fullName}
                 onChange={this.handleFullNameChange.bind(this)} />
             </div>
-            <div className="form-group">
-              <label>คู่สมรส :</label>
-              <input type="text" className="form-control"
-                 />
-            </div>
 
             <div className="form-group">
               <label>บ้านเลขที่ :</label>
               <input type="text" className="form-control"
-                 />
+                value={this.state.people.addressNo}
+                onChange={this.handleAddressNoChange.bind(this)} />
             </div>
             <div className="form-group">
               <label>บ้าน :</label>
               <input type="text" className="form-control"
-                 />
+                value={this.state.people.addressBan}
+                onChange={this.handleAddressBanChange.bind(this)} />
             </div>
             <div className="form-group">
               <label>หมู่ :</label>
               <input type="text" className="form-control"
-                 />
+                value={this.state.people.addressMoo}
+                onChange={this.handleAddressMooChange.bind(this)} />
             </div>
             <div className="form-group">
               <label>ตำบล :</label>
               <input type="text" className="form-control"
-                 />
+                value={this.state.people.addressTambon}
+                onChange={this.handleAddressTambonChange.bind(this)} />
             </div>
             <div className="form-group">
               <label>อำเภอ :</label>
               <input type="text" className="form-control"
-                 />
+                value={this.state.people.addressAmphoe}
+                onChange={this.handleAddressAmphoeChange.bind(this)} />
             </div>
             <div className="form-group">
               <label>จังหวัด :</label>
               <input type="text" className="form-control"
-                 />
+                value={this.state.people.addressProvince}
+                onChange={this.handleAddressProvince.bind(this)} />
             </div>
             <div className="form-group">
               <label>รหัสไปรษณีย์ :</label>
               <input type="text" className="form-control"
-                 />
+                value={this.state.people.zipcode}
+                onChange={this.handleZipcodeChange.bind(this)} />
             </div>
             <div className="form-group">
               <label>หมายเลขโทรศัพท์ :</label>
               <input type="text" className="form-control"
-                 />
+                value={this.state.people.phoneNumber}
+                onChange={this.handlePhoneNumberChange.bind(this)} />
             </div>
             <div className="form-group">
               <label>วงเงินกู้ :</label>
               <input type="number" className="form-control"
-                 />
+                value={this.state.people.amount}
+                onChange={this.handleAmountChange.bind(this)} />
             </div>
             <div className="form-group">
               <label>สำเนาเพื่อมอบให้ผู้กู้ ผู้ค้ำ ธนาคาร จำนวน(ฉบับ):</label>
@@ -154,6 +211,11 @@ class PeopleEditor extends Component {
             </div>
             <div className="form-group">
               <label>ผู้แทนกองทุนฯ :</label>
+              <input type="text" className="form-control"
+                 />
+            </div>
+            <div className="form-group">
+              <label>คู่สมรส :</label>
               <input type="text" className="form-control"
                  />
             </div>

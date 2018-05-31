@@ -28,7 +28,7 @@ class PeopleInlineEditor extends Component {
   }
   render() {
     return (
-      <input type="number" style={{textAlign: 'right'}}
+      <input type="number" style={{textAlign: 'right'}} 
         value={this.state.people.amount}
         onChange={this.handleChange.bind(this)}
         onBlur={this.handleBlur.bind(this)}/>
