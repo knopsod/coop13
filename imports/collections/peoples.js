@@ -28,8 +28,8 @@ Meteor.methods({
 
       amount: 0,
 
-      committeeName: '',
-      committeeName2: '',
+      committeeFullName: '',
+      committeeFullName2: '',
 
       copiedDocsCount: 0,
 

@@ -93,6 +93,78 @@ class PeopleEditor extends Component {
       people: { ...this.state.people, amount }
     });
   }
+  handleCommitteeFullNameChange(e) {
+    const committeeFullName = e.target.value;
+    this.setState({
+      people: { ...this.state.people, committeeFullName }
+    });
+  }
+  handleCommitteeFullName2Change(e) {
+    const committeeFullName2 = e.target.value;
+    this.setState({
+      people: { ...this.state.people, committeeFullName2 }
+    });
+  }
+  handleCopiedDocsCountChange(e) {
+    const copiedDocsCount = e.target.value;
+    this.setState({
+      people: { ...this.state.people, copiedDocsCount }
+    });
+  }
+  handleFuneralNameChange(e) {
+    const funeralName = e.target.value;
+    this.setState({
+      people: { ...this.state.people, funeralName }
+    });
+  }
+  handleFuneralTambonChange(e) {
+    const funeralTambon = e.target.value;
+    this.setState({
+      people: { ...this.state.people, funeralTambon }
+    });
+  }
+  handleFuneralAmphoeChange(e) {
+    const funeralAmphoe = e.target.value;
+    this.setState({
+      people: { ...this.state.people, funeralAmphoe }
+    });
+  }
+  handleFuneralProvinceChange(e) {
+    const funeralProvince = e.target.value;
+    this.setState({
+      people: { ...this.state.people, funeralProvince }
+    });
+  }
+  handleSpouseFullNameChange(e) {
+    const spouseFullName = e.target.value;
+    this.setState({
+      people: { ...this.state.people, spouseFullName }
+    });
+  }
+  handleGuarantorFullNameChange(e) {
+    const guarantorFullName = e.target.value;
+    this.setState({
+      people: { ...this.state.people, guarantorFullName }
+    });
+  }
+  handleGuarantorFullName2Change(e) {
+    const guarantorFullName2 = e.target.value;
+    this.setState({
+      people: { ...this.state.people, guarantorFullName2 }
+    });
+  }
+  handleWitnessFullNameChange(e) {
+    const witnessFullName = e.target.value;
+    this.setState({
+      people: { ...this.state.people, witnessFullName }
+    });
+  }
+  handleWitnessFullName2Change(e) {
+    const witnessFullName2 = e.target.value;
+    this.setState({
+      people: { ...this.state.people, witnessFullName2 }
+    });
+  }
   render() {
     return (
       <div>
@@ -181,62 +253,85 @@ class PeopleEditor extends Component {
             </div>
             <div className="form-group">
               <label>สำเนาเพื่อมอบให้ผู้กู้ ผู้ค้ำ ธนาคาร จำนวน(ฉบับ):</label>
-              <input type="text" className="form-control"
-                 />
+              <input type="number" className="form-control"
+                value={this.state.people.copiedDocsCount}
+                onChange={this.handleCopiedDocsCountChange.bind(this)}/>
             </div>
             <div className="form-group">
               <label>ฌาปณกิจสงเคราะห์ของผู้กู้ :</label>
               <input type="text" className="form-control"
+                value={this.state.people.funeralName}
+                onChange={this.handleFuneralNameChange.bind(this)}
                  />
             </div>
             <div className="form-group">
               <label>ตำบล :</label>
               <input type="text" className="form-control"
+                value={this.state.people.funeralTambon}
+                onChange={this.handleFuneralTambonChange.bind(this)}
                  />
             </div>
             <div className="form-group">
               <label>อำเภอ :</label>
               <input type="text" className="form-control"
+                value={this.state.people.funeralAmphoe}
+                onChange={this.handleFuneralAmphoeChange.bind(this)}
                  />
             </div>
             <div className="form-group">
               <label>จังหวัด :</label>
               <input type="text" className="form-control"
+                value={this.state.people.funeralProvince}
+                onChange={this.handleFuneralProvinceChange.bind(this)}
                  />
             </div>
             <div className="form-group">
               <label>ผู้แทนกองทุนฯ :</label>
               <input type="text" className="form-control"
+                value={this.state.people.committeeFullName}
+                onChange={this.handleCommitteeFullNameChange.bind(this)}
                  />
             </div>
             <div className="form-group">
               <label>ผู้แทนกองทุนฯ :</label>
               <input type="text" className="form-control"
+                value={this.state.people.committeeFullName2}
+                onChange={this.handleCommitteeFullName2Change.bind(this)}
                  />
             </div>
             <div className="form-group">
               <label>คู่สมรส :</label>
               <input type="text" className="form-control"
+                value={this.state.people.spouseFullName}
+                onChange={this.handleSpouseFullNameChange.bind(this)}
                  />
             </div>
             <div className="form-group">
               <label>ผู้ค้ำ :</label>
               <input type="text" className="form-control"
+                value={this.state.people.guarantorFullName}
+                onChange={this.handleGuarantorFullNameChange.bind(this)}
                  />
             </div>
             <div className="form-group">
               <label>ผู้ค้ำ :</label>
               <input type="text" className="form-control"
+                value={this.state.people.guarantorFullName2}
+                onChange={this.handleGuarantorFullName2Change.bind(this)}
                  />
             </div>
             <div className="form-group">
               <label>พยาน :</label>
               <input type="text" className="form-control"
+                value={this.state.people.witnessFullName}
+                onChange={this.handleWitnessFullNameChange.bind(this)}
                  />
             </div>
             <div className="form-group">
               <label>พยาน :</label>
               <input type="text" className="form-control"
+                value={this.state.people.witnessFullName2}
+                onChange={this.handleWitnessFullName2Change.bind(this)}
                  />
             </div>
 
