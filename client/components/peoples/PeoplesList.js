@@ -21,10 +21,6 @@ class PeoplesList extends Component {
     this.props.meteorCall('peoples.insert');
   }
 
-  handleHideClick(people) {
-    this.props.meteorCall('peoples.hide', people);
-  }
-
   handleRemoveClick(people) {
     this.props.meteorCall('peoples.remove', people);
   }
@@ -36,24 +32,7 @@ class PeoplesList extends Component {
   renderList() {
     return this.props.peoples.map((people) => {
       return (
-        <li className="list-group-item d-flex justify-content-between"
-          key={people._id}>
-          <Link className="btn btn-info"
-            to={`peoples/${people._id}`}>แก้ไข</Link>
-
-          {` ${people.no}. ${people.fullName}`}
-
-          <span className="pull-right">
-
-            <PeopleInlineEditor key={people._id} people={people} />
-
-            <button className="btn btn-warning" style={{marginLeft: 2}}
-              onClick={() => {this.handleHideClick(people)}}>
-              ยกเลิก
-            </button>
-          </span>
-
-        </li>
+        <PeopleInlineEditor key={people._id} people={people} />
       );
     });
   }
@@ -61,7 +40,7 @@ class PeoplesList extends Component {
   renderHiddenList() {
     return this.props.hiddenPeoples.map((people) => {
       return (
-        <li className="list-group-item d-flex justify-content-between"
+        <div className="list-group-item d-flex justify-content-between"
           key={people._id}>
 
           <button className="btn btn-info"
@@ -77,63 +56,47 @@ class PeoplesList extends Component {
             </button>
           </span>
 
-        </li>
+        </div>
       );
     });
   }
 
   render() {
     return (
-      <div>
+      <div className="container flex">
         {this.props.userId &&
-          <ul className="list-group">
-            {/* <li className="list-group-item d-flex justify-content-between">
-              <button className="btn btn-primary" style={{marginRight: 2}}>
-                Excel(กำลังทำ...)
-              </button>
-              { parseInt(this.props.peoples.length) < 34 ?
-                <button className="btn btn-primary" style={{marginRight: 2}}>
-                  พิมพ์ใบรายชื่อ(33)(กำลังทำ...)
-                </button>
-                : undefined
-              }
-              { parseInt(this.props.peoples.length) < 11 ?
-                <button className="btn btn-primary" style={{marginRight: 2}}>
-                  พิมพ์ใบปะหน้า(10)(กำลังทำ...)
-                </button>
-                : undefined
-              }
-            </li> */}
+          <div className="list-group">
 
-            <li className="list-group-item">
+            <div className="list-group-item">
               <button className="btn btn-primary"
                 onClick={this.handleCreateClick.bind(this)}>
                 สร้างใหม่
               </button>
-            </li>
+            </div>
 
-            {/* <li className="list-group-item">
-              <div className="input-group">
-                <span className="input-group-addon"><i className="glyphicon glyphicon-user"></i></span>
-                <input id="search" ref="search" type="text" className="form-control" name="search" placeholder="Search..."/>
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-sm-1"></div>
+                <div className="col-sm-1">ลำดับที่</div>
+                <div className="col-sm-7">ชื่อ-นามสกุล</div>
+                <div className="col-sm-1">วงเงินกู้</div>
               </div>
-            </li> */}
+            </div>
 
             <FlipMove maintainContainerHeight={true}>
               {this.renderList()}
 
-              <li className="list-group-item d-flex justify-content-between">
+              <div className="list-group-item d-flex justify-content-between">
                 <span className="pull-right">
                   <h4 style={{marginRight: 32}}>
                     {`รวม ${numeral(parseInt(this.props.sum)).format('0,0')} บาท`}
                   </h4>
-                  {/* <input style={{marginRight: 40}} value={this.state.sum}/> */}
                 </span>
-              </li>
+              </div>
 
               {this.renderHiddenList()}
             </FlipMove>
-          </ul>
+          </div>
         }
 
       </div>
