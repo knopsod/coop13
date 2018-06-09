@@ -83,36 +83,28 @@ class MemberPaidsItem extends Component {
 
         </td>
         <td>
-          { !!this.props.userId ?
-            <input type="text" className="form-control"
-            placeholder="ชื่อ"
-            value={this.state.memberPaid.name}
-            onChange={this.handleNameChange.bind(this)}
-            onBlur={this.handleBlur.bind(this)}/>
-            :
-            `${this.state.memberPaid.name}`
-           }
+          <input type="text" className="form-control"
+          placeholder="ชื่อ"
+          value={this.state.memberPaid.name}
+          onChange={this.handleNameChange.bind(this)}
+          onBlur={this.handleBlur.bind(this)}/>
+
         </td>
-        { !!this.props.userId ?
-          <td>
-            <form onSubmit={this.handleSubmit.bind(this)}>
-              <input type="number" className="form-control"
-                placeholder="จำนวน"
-                onChange={this.handleNumberChange.bind(this)}
-                ref="num"/>
-            </form>
-          </td>
-          :
-          undefined
-        }
+
+        <td>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <input type="number" className="form-control"
+              placeholder="จำนวน"
+              onChange={this.handleNumberChange.bind(this)}
+              ref="num"/>
+          </form>
+        </td>
+
         <td>
           {`${this.renderJoinPaids()} `}
-          { !!this.props.userId ?
-            <button className="btn btn-danger glyphicon glyphicon-remove"
-              onClick={this.handleRemoveClick.bind(this)}></button>
-            :
-            undefined
-          }
+          <button className="btn btn-danger glyphicon glyphicon-remove"
+            onClick={this.handleRemoveClick.bind(this)}></button>
+          
         </td>
       </tr>
 
