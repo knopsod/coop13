@@ -95,18 +95,26 @@ class MemberPaidsItem extends Component {
         </td>
         <td>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <input type="number" className="form-control"
-              placeholder="จำนวน"
-              onChange={this.handleNumberChange.bind(this)}
-              ref="num"/>
+            { !!this.props.userId ?
+              <input type="number" className="form-control"
+                placeholder="จำนวน"
+                onChange={this.handleNumberChange.bind(this)}
+                ref="num"/>
+                :
+                undefined
+            }
+
           </form>
 
         </td>
         <td>
           {`${this.renderJoinPaids()} `}
-          <button className="btn btn-danger glyphicon glyphicon-remove"
-            onClick={this.handleRemoveClick.bind(this)}></button>
-
+          { !!this.props.userId ?
+            <button className="btn btn-danger glyphicon glyphicon-remove"
+              onClick={this.handleRemoveClick.bind(this)}></button>
+            :
+            undefined
+          }
         </td>
       </tr>
 
