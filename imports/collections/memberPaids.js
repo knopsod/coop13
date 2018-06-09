@@ -12,6 +12,7 @@ Meteor.methods({
 
       name: '',
       paids: [0],
+      creatorId: Meteor.userId()
     });
   },
   'memberPaids.remove': function (memberPaid) {
@@ -22,7 +23,8 @@ Meteor.methods({
       {
         $set: {
           ...memberPaid,
-          no: parseInt(memberPaid.no)
+          no: parseInt(memberPaid.no),
+          creatorId: Meteor.userId()
         }
       }
     );
