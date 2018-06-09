@@ -11,7 +11,7 @@ Meteor.methods({
       no,
 
       name: '',
-      paids: [],
+      paids: [0],
     });
   },
   'memberPaids.remove': function (memberPaid) {

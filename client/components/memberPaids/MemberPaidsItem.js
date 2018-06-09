@@ -27,6 +27,48 @@ class MemberPaidsItem extends Component {
       memberPaid: { ...this.state.memberPaid, name }
     });
   }
+  handleNumberBlur(e) {
+    const num = e.target.value;
+    const paids = this.state.memberPaid.paids;
+
+    paids.push(parseInt(num));
+
+    this.setState({
+      memberPaid: { ...this.state.memberPaid, paids }
+    });
+
+    const { memberPaid } = this.state;
+    this.props.meteorCall('memberPaids.update', memberPaid, (error, response) => {
+      if (!error) {
+
+      }
+    });
+  }
+  renderJoinPaids() {
+    if ( this.props.memberPaid.paids.length ) {
+      return this.props.memberPaid.paids.join('+ ');
+    } else {
+      return '0';
+    }
+  }
+  handleRemoveClick(e) {
+    const paids = this.state.memberPaid.paids;
+
+    if (paids.length > 1) {
+      paids.pop();
+    }
+
+    this.setState({
+      memberPaid: { ...this.state.memberPaid, paids }
+    });
+
+    const { memberPaid } = this.state;
+    this.props.meteorCall('memberPaids.update', memberPaid, (error, response) => {
+      if (!error) {
+
+      }
+    });
+  }
   render() {
     return (
       <tr>
@@ -37,19 +79,21 @@ class MemberPaidsItem extends Component {
         <td>
           <input type="text" className="form-control"
           placeholder="ชื่อ"
+          value={this.state.memberPaid.name}
           onChange={this.handleNameChange.bind(this)}
           onBlur={this.handleBlur.bind(this)}/>
         </td>
         <td>
 
           <input type="number" className="form-control"
-            placeholder="จำนวน"/>
+            placeholder="จำนวน"
+            onBlur={this.handleNumberBlur.bind(this)}/>
         </td>
         <td>
-          {`Some text`}
-          <a href="#">
-            <span className="glyphicon glyphicon-remove btn-danger"></span>
-          </a>
+          {`${this.renderJoinPaids()} `}
+          <button className="btn btn-danger glyphicon glyphicon-remove"
+            onClick={this.handleRemoveClick.bind(this)}></button>
+
         </td>
       </tr>
 

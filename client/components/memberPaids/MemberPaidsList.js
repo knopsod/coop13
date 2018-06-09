@@ -26,13 +26,17 @@ class MemberPaidsList extends Component {
   render() {
     return (
       <div className="container">
-        { !!this.props.userId ?
-          <button className="btn btn-primary"
-            onClick={this.handleClick.bind(this)}>เพิ่มสมาชิก</button>
-          : undefined
-        }
+        <div>
+          { !!this.props.userId ?
+            <button className="btn btn-primary"
+              onClick={this.handleClick.bind(this)}>เพิ่มสมาชิก</button>
+            : undefined
+          }
 
-        { !!this.props.userId ? <hr/> : undefined }
+        </div>
+
+
+        <hr/>
 
         <table className="table table-striped">
           <thead>
@@ -40,7 +44,7 @@ class MemberPaidsList extends Component {
               <th>ลำดับ</th>
               <th>ชื่อ</th>
               <th>จำนวน</th>
-              <th>รวม</th>
+              <th>รวม {`${this.props.total}`} บาท</th>
             </tr>
           </thead>
           <tbody>
@@ -54,7 +58,10 @@ class MemberPaidsList extends Component {
 };
 
 MemberPaidsList.propTypes = {
-  memberPaids: PropTypes.array
+  memberPaids: PropTypes.array,
+  meteorCall: PropTypes.func,
+  userId: PropTypes.string,
+  total: PropTypes.number
 }
 
 export default withTracker((props) => {
@@ -64,9 +71,24 @@ export default withTracker((props) => {
 
   const userId = Meteor.userId();
 
+  const getSum = (total, num) => {
+    return total + num;
+  }
+
+  let total = 0;
+  for(let i = 0; i < memberPaids.length; i++) {
+
+    console.log(memberPaids[i].paids, '=', memberPaids[i].paids.reduce(getSum));
+
+    total += memberPaids[i].paids.reduce(getSum);
+
+    console.log(total);
+  }
+
   return {
     memberPaids,
     meteorCall: Meteor.call,
-    userId
+    userId,
+    total
   }
 })(MemberPaidsList);
