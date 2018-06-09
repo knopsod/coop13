@@ -13,6 +13,6 @@ Meteor.startup(() => {
     });
   });
   Meteor.publish('MemberPaids', function () {
-    return MemberPaids.find({});
+    return MemberPaids.find({creatorId: Meteor.userId()});
   });
 });
