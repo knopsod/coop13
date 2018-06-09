@@ -43,7 +43,11 @@ class MemberPaidsList extends Component {
             <tr>
               <th>ลำดับ</th>
               <th>ชื่อ</th>
-              <th>จำนวน</th>
+              { !!this.props.userId ?
+                <th>จำนวน</th>
+                :
+                undefined
+              }
               <th><h2>{`รวม ${numeral(this.props.total).format(0, 0)} บาท`}</h2></th>
             </tr>
           </thead>

@@ -93,20 +93,18 @@ class MemberPaidsItem extends Component {
             `${this.state.memberPaid.name}`
            }
         </td>
-        <td>
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            { !!this.props.userId ?
+        { !!this.props.userId ?
+          <td>
+            <form onSubmit={this.handleSubmit.bind(this)}>
               <input type="number" className="form-control"
                 placeholder="จำนวน"
                 onChange={this.handleNumberChange.bind(this)}
                 ref="num"/>
-                :
-                undefined
-            }
-
-          </form>
-
-        </td>
+            </form>
+          </td>
+          :
+          undefined
+        }
         <td>
           {`${this.renderJoinPaids()} `}
           { !!this.props.userId ?
