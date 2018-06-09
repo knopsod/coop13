@@ -77,11 +77,15 @@ class MemberPaidsItem extends Component {
 
         </td>
         <td>
-          <input type="text" className="form-control"
-          placeholder="ชื่อ"
-          value={this.state.memberPaid.name}
-          onChange={this.handleNameChange.bind(this)}
-          onBlur={this.handleBlur.bind(this)}/>
+          { !!this.props.userId ?
+            <input type="text" className="form-control"
+            placeholder="ชื่อ"
+            value={this.state.memberPaid.name}
+            onChange={this.handleNameChange.bind(this)}
+            onBlur={this.handleBlur.bind(this)}/>
+            :
+            `${this.state.memberPaid.name}`
+           }
         </td>
         <td>
 
@@ -108,9 +112,11 @@ MemberPaidsItem.propTypes = {
 
 export default withTracker((props) => {
   const memberPaid = props.memberPaid;
+  const userId = Meteor.userId();
 
   return {
     memberPaid,
-    meteorCall: Meteor.call
+    meteorCall: Meteor.call,
+    userId,
   };
 })(MemberPaidsItem);

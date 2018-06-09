@@ -77,12 +77,7 @@ export default withTracker((props) => {
 
   let total = 0;
   for(let i = 0; i < memberPaids.length; i++) {
-
-    console.log(memberPaids[i].paids, '=', memberPaids[i].paids.reduce(getSum));
-
     total += memberPaids[i].paids.reduce(getSum);
-
-    console.log(total);
   }
 
   return {
