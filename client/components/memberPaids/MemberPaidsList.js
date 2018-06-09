@@ -44,7 +44,7 @@ class MemberPaidsList extends Component {
               <th>ลำดับ</th>
               <th>ชื่อ</th>
               <th>จำนวน</th>
-              <th>รวม {`${this.props.total}`} บาท</th>
+              <th>รวม {`${numeral(this.props.total).format(0, 0)}`} บาท</th>
             </tr>
           </thead>
           <tbody>

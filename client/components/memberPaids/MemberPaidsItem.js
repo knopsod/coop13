@@ -10,7 +10,8 @@ class MemberPaidsItem extends Component {
     const memberPaid = props.memberPaid;
 
     this.state = {
-      memberPaid
+      memberPaid,
+      num: 0
     }
   }
   handleBlur(e) {
@@ -27,11 +28,16 @@ class MemberPaidsItem extends Component {
       memberPaid: { ...this.state.memberPaid, name }
     });
   }
-  handleNumberBlur(e) {
+  handleNumberChange(e) {
     const num = e.target.value;
+    this.setState({ num });
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+
     const paids = this.state.memberPaid.paids;
 
-    paids.push(parseInt(num));
+    paids.push(parseInt(this.state.num));
 
     this.setState({
       memberPaid: { ...this.state.memberPaid, paids }
@@ -40,7 +46,7 @@ class MemberPaidsItem extends Component {
     const { memberPaid } = this.state;
     this.props.meteorCall('memberPaids.update', memberPaid, (error, response) => {
       if (!error) {
-
+        this.refs.num.value = '';
       }
     });
   }
@@ -88,10 +94,13 @@ class MemberPaidsItem extends Component {
            }
         </td>
         <td>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <input type="number" className="form-control"
+              placeholder="จำนวน"
+              onChange={this.handleNumberChange.bind(this)}
+              ref="num"/>
+          </form>
 
-          <input type="number" className="form-control"
-            placeholder="จำนวน"
-            onBlur={this.handleNumberBlur.bind(this)}/>
         </td>
         <td>
           {`${this.renderJoinPaids()} `}
