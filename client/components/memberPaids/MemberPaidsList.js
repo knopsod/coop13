@@ -26,9 +26,13 @@ class MemberPaidsList extends Component {
   render() {
     return (
       <div className="container">
-        <button className="btn btn-primary"
-          onClick={this.handleClick.bind(this)}>เพิ่มสมาชิก</button>
-        <hr/>
+        { !!this.props.userId ?
+          <button className="btn btn-primary"
+            onClick={this.handleClick.bind(this)}>เพิ่มสมาชิก</button>
+          : undefined
+        }
+
+        { !!this.props.userId ? <hr/> : undefined }
 
         <table className="table table-striped">
           <thead>
@@ -58,8 +62,11 @@ export default withTracker((props) => {
 
   const memberPaids = MemberPaids.find({}, {sort: {no: 1}}).fetch();
 
+  const userId = Meteor.userId();
+
   return {
     memberPaids,
-    meteorCall: Meteor.call
+    meteorCall: Meteor.call,
+    userId
   }
 })(MemberPaidsList);
