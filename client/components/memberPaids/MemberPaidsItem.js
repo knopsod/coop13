@@ -57,7 +57,7 @@ class MemberPaidsItem extends Component {
     if (this.refs.num.value === '') {
       return;
     }
-    
+
     const paids = this.state.memberPaid.paids;
 
     paids.push(parseInt(this.state.num));
@@ -75,7 +75,7 @@ class MemberPaidsItem extends Component {
   }
   renderJoinPaids() {
     if ( this.props.memberPaid.paids.length ) {
-      return this.props.memberPaid.paids.join('+ ');
+      return this.props.memberPaid.paids.join(' +');
     } else {
       return '0';
     }
