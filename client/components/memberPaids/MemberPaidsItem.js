@@ -34,6 +34,9 @@ class MemberPaidsItem extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
+    if (this.refs.num.value === '') {
+      return;
+    }
 
     const paids = this.state.memberPaid.paids;
 
@@ -51,6 +54,10 @@ class MemberPaidsItem extends Component {
     });
   }
   handleNumberBlur(e) {
+    if (this.refs.num.value === '') {
+      return;
+    }
+    
     const paids = this.state.memberPaid.paids;
 
     paids.push(parseInt(this.state.num));
