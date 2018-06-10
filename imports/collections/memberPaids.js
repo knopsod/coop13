@@ -5,7 +5,7 @@ export const MemberPaids = new Mongo.Collection('MemberPaids');
 
 Meteor.methods({
   'memberPaids.insert': function () {
-    const no = MemberPaids.find().count() + 1;
+    const no = MemberPaids.find({ creatorId: Meteor.userId() }).count() + 1;
 
     return MemberPaids.insert({
       no,

@@ -50,6 +50,22 @@ class MemberPaidsItem extends Component {
       }
     });
   }
+  handleNumberBlur(e) {
+    const paids = this.state.memberPaid.paids;
+
+    paids.push(parseInt(this.state.num));
+
+    this.setState({
+      memberPaid: { ...this.state.memberPaid, paids }
+    });
+
+    const { memberPaid } = this.state;
+    this.props.meteorCall('memberPaids.update', memberPaid, (error, response) => {
+      if (!error) {
+        this.refs.num.value = '';
+      }
+    });
+  }
   renderJoinPaids() {
     if ( this.props.memberPaid.paids.length ) {
       return this.props.memberPaid.paids.join('+ ');
@@ -94,9 +110,10 @@ class MemberPaidsItem extends Component {
         <td>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <input type="number" className="form-control"
-              placeholder="จำนวน"
+              placeholder="จำนวน" ref="num"
               onChange={this.handleNumberChange.bind(this)}
-              ref="num"/>
+              onBlur={this.handleNumberBlur.bind(this)}
+              />
           </form>
         </td>
 
@@ -104,7 +121,7 @@ class MemberPaidsItem extends Component {
           {`${this.renderJoinPaids()} `}
           <button className="btn btn-danger glyphicon glyphicon-remove"
             onClick={this.handleRemoveClick.bind(this)}></button>
-          
+
         </td>
       </tr>
 
